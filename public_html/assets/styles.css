@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --main-color: #1E232C;
+    --font: Urbanist;
+    --color_font: white;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto 1fr auto; 
+    height: 100vh; 
+    
+}
+
+nav {
+    background-color: var(--main-color);
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content:space-between;
+    justify-items: center;
+}
+
+main {
+    padding: 2rem;
+    font-family: var(--font);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer {
+    background-color: var(--main-color);
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    color: var(--color_font);
+    height: 100%;
+    margin-left: 50px;
+}
+#brand{
+    font: 900 xx-large var(--font);
+    text-align: justify;
+    
+    
+}
+
+#slogan{
+    font: 600 13.125px var(--font);
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-right: 50px;
+    width: 340.162px;
+}
+
+#login{
+    width: 160.83px;
+    height: 45.73px;
+    border-radius: 11.386px;
+    border: 1.423px solid var(--color_font);
+    background: var(--main-color);
+    color: var(--color_font);
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: var(--font);
+    font-size: 21.349px;
+    font-weight: 600;
+    align-self: center;
+}
+
+#signUp{
+    width: 156.56px;
+    height: 46px;
+    border-radius: 11.386px;
+    border: none;
+    background: var(--color_font);
+    color: var(--main-color);
+    text-align: center;
+    font-family: var(--font);
+    font-size: 21.349px;
+    font-weight: 600;
+    align-self: center;
+}
+
+footer{
+    color: var(--color_font);
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.left_side{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right_side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    gap: 20px;
+}
+
+.welcome{
+    display: flex;
+    justify-content: space-between;
+    width: 709.22px;
+    height: 264px;
+    background-color: var(--main-color);
+    border-radius: 21.13px;
+    color: var(--color_font);
+    
+}
+
+.welcome_text_content{
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    align-items: center;
+    justify-content: center;
+    width: 344.667px;
+    height: 100%;
+    margin-left: 69.55px;
+}
+
+.welcome_text_content p{
+    text-align: left;
+    width: 100%;
+    font-size: 26.847px;
+    font-weight: 300;
+}
+
+.welcome_text_content h2{
+    display: flex;
+    align-items: center;
+    text-align:start;
+    width: 100%;
+    height: 40px;
+    font-size: 53.695px;
+    font-weight: 800;
+}
+
+.welcome_img{
+    width: 232.678px;
+    height: 264px;
+    border-radius: 0px 21.13px 21.13px 0px;
+    background: url(/assets/Fondo.jpg) lightgray 50% / cover no-repeat;
+    filter:opacity(100%);
+}
+
+.beneficts{
+    width: 709px;
+    height: 402.876px;
+    background-color: var(--main-color);
+    border-radius: 21.13px;
+    color: var(--color_font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.beneficts_text_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 32px;
+    width: 100%;
+}
+
+.beneficts_text_content h2{
+    display: flex;
+    align-items: center;
+    width: 77%;
+    height: 42px;
+    align-content: center;
+    font-size: 52.549px;
+}
+
+.benefict{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 37px;
+}
+
+.benefict p{
+    width: 465.453px;
+    height: 48.762px;
+    font-size: 26.275px;
+    font-weight: 300;
+}
+
+
+#benefict_1{
+    width: 53.19px;
+    height: 53.19px;
+    background: url(/assets/Whatch.png) transparent 100% / contain no-repeat;
+    aspect-ratio: 53.19/53.19;
+}
+#benefict_2{
+    width: 53.19px;
+    height: 53.19px;
+    background: url(/assets/Saving.png) transparent 100% / contain no-repeat;
+    aspect-ratio: 53.19/53.19;
+}
+
+.benefict_1 p{
+    height: 60px;
+}
+.benefict_2 p{
+    height: 60px;
+}
+.benefict_3 p{
+    height: 90px;
+}
+
+#benefict_3{
+    width: 53.19px;
+    height: 53.19px;
+    background: url(/assets/Protected.png) transparent 100% / contain no-repeat;
+    aspect-ratio: 53.19/53.19;
+}
+
+.features{
+    width: 709px;
+    height: 465.211px;
+    background-color: var(--main-color);
+    border-radius: 21.13px;
+    color: var(--color_font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.features_text_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.features_text_content h2{
+    display: flex;
+    align-items: center;
+    width: 79%;
+    height: 42px;
+    align-content: center;
+    font-size: 52.549px;
+}
+
+.feature{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 37px;
+}
+
+.feature p{
+    width: 465.453px;
+    font-size: 26.275px;
+    font-weight: 300;
+}
+
+.feature_1 p{
+    height: 60px;
+}
+.feature_2 p{
+    height: 60px;
+}
+.feature_3 p{
+    height: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.feature_3 p{
+    height: 60px;
+}
+
+#feature_1{
+    width: 53.19px;
+    height: 53.19px;
+    background: url(/assets/Online.png) transparent 100% / contain no-repeat;
+    aspect-ratio: 53.19/53.19;
+}
+#feature_2{
+    width: 53.19px;
+    height: 53.19px;
+    background: url(/assets/Parking.png) transparent 100% / contain no-repeat;
+    aspect-ratio: 53.19/53.19;
+}
+
+#feature_3{
+    width: 53.19px;
+    height: 53.19px;
+    background: url(/assets/Safe_Pays.png) transparent 100% / contain no-repeat;
+    aspect-ratio: 53.19/53.19;
+}
+
+#feature_4{
+    width: 53.19px;
+    height: 53.19px;
+    background: url(/assets/Cake_Diagram.png) transparent 100% / contain no-repeat;
+    aspect-ratio: 53.19/53.19;
+}
+
+.contact_us{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 709px;
+    height: 94.234px;
+    border: 2px solid var(--main-color);
+    border-radius: 22px;
+}
+
+.contact_us_items{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    /* background-color: aqua; */
+}
+
+.contact_us_items button{
+    width: 246.804px;
+    height: 71.652px;
+    border-radius: 17.949px;   
+    border: none;
+    background: var(--main-color);
+    color: var(--color_font);
+    font-family: var(--font);
+    text-align: center;
+    font-size: 33.655px;
+    font-weight: 600;
+}
+
+.contact_us_text_content{
+    display: flex;
+    width: 50%;
+    gap: 10px;
+}
+
+.contact_us_text_content p{
+    width: 246.804px;
+    text-align: center;
+    font-size: 26.924px;
+    font-weight: 300;
+}
+
+
+.partner_img{
+    width: 53.848px;
+    height: 53.848px;
+    aspect-ratio: 53.85/53.85;
+    background: url(/assets/Be_Partner.png) transparent 100% / contain no-repeat;
+
+}

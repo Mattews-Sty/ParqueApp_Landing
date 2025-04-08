@@ -1,134 +1,86 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParqueApp - Reserva tu Estacionamiento</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .hero {
-            background: url('parking-bg.jpg') no-repeat center center/cover;
-            padding: 100px 20px;
-            color: rgb(0, 0, 0);
-        }
-        .hero h2 {
-            font-size: 2.5em;
-        }
-        .hero button {
-            background: #e67e22;
-            color: white;
-            padding: 15px 25px;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-        .section {
-            padding: 50px 20px;
-        }
-        .intro {
-            background: #ecf0f1;
-            padding: 50px 20px;
-        }
-        .features, .benefits, .contact {
-            max-width: 800px;
-            margin: auto;
-        }
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="icon" type="image/x-icon" href="assets/Favicon.svg">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>ParqueApp</title>
 </head>
 <body>
-    <header>
-        <h1>ParqueApp</h1>
-        <nav>
-            <ul>
-                <li><a href="#features">Características</a></li>
-                <li><a href="#benefits">Beneficios</a></li>
-                <li><a href="#pricing">Planes</a></li>
-                <li><a href="#contact">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
     
-    <section class="intro">
-        <h2>Bienvenido a ParqueApp</h2>
-        <p>ParqueApp es la solución ideal para quienes buscan un estacionamiento de manera rápida, segura y eficiente. Con nuestra plataforma, puedes encontrar y reservar tu parqueadero en segundos, evitando largas esperas y optimizando tu tiempo.</p>
-    </section>
-    
-    <section class="hero">
-        <h2>Encuentra y reserva tu parqueadero en segundos</h2>
-        <p>Optimiza tu tiempo y garantiza un estacionamiento seguro con ParqueApp.</p>
-        <button onclick="showAlert()">¡Regístrate ahora!</button>
-    </section>
-    
-    <section id="features" class="section features">
-        <h2>Características</h2>
-        <ul>
-            <li>✅ Reservas en línea, encuentra y aparta tu parqueadero con anticipación</li>
-            <li>📍 Mapa interactivo en tiempo real con ubicación precisa</li>
-            <li>💳 Pagos digital seguros </li>
-            <li>📊 Reportes detallados para propietarios de parqueaderos</li>
-        </ul>
-    </section>
-    
-    <section id="benefits" class="section benefits">
-        <h2>Beneficios</h2>
-        <p>🚀 Reduce el tiempo de búsqueda y mejora tu experiencia al estacionar.</p>
-        <p>🛡️ Mayor seguridad con accesos controlados y notificaciones en tiempo real.</p>
-        <p>💰 Ahorro de costos con precios competitivos y promociones exclusivas.</p>
-    </section>
-    
-    <section id="pricing" class="section pricing">
-        <h2> Precios</h2>
-        <p>Elige el plan que mejor se adapte a tus necesidades.</p>
-        <ul>
-            <li><strong>Plan Básico:</strong> Gratis - Reserva en línea y pagos en sitio.</li>
-            <li><strong>Plan Pro:</strong> $9.999/mes - Acceso prioritario y reportes avanzados.</li>
-        </ul>
-    </section>
-    
-    <section id="contact" class="section contact">
-        <h2>Contacto</h2>
-        <p>📩 ¿Tienes dudas? Escríbenos a <a href="mailto:info@parqueapp.com">parqueapptureserva@gmail.com</a></p>
-        <p>📞 Llámanos: +57 313 5081132</p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 ParqueApp. Todos los derechos reservados.</p>
-    </footer>
+    <nav>
+        <div class="logo">
+            <span id="brand">ParqueApp</span>
+        <span id="slogan">Menos Vueltas, Más Tiempo Para Tí.</span>
+    </div>
+    <div class="buttons">
+        <button id="login">Iniciar Sesión</button>
+        <button id="signUp">Registrarse</button>
+    </div>
+    </nav>
+    <main>
+        <div class="left_side">
+            <div class="welcome">
+                <div class="welcome_text_content">
+                <h2>Bienvenido</h2>
+                <p>ParqueApp es la solución ideal para quienes buscan un estacionamiento de manera rápida, segura y eficiente.</p>
+                </div>
+                <div class="welcome_img"></div>
+            </div>
+            <div class="beneficts">
+                <div class="beneficts_text_content">
+                    <h2>Beneficios</h2>
+                    <div class="benefict benefict_1">
+                        <div id="benefict_1"></div>
+                        <p>Reduce el tiempo de búsqueda y mejora tu experiencia al estacionar.</p>
+                    </div>
+                    <div class="benefict benefict_2">
+                        <div id="benefict_2"></div>
+                        <p>Ahorro de costos con precios competitivos y promociones exclusivas.</p>
+                    </div>
+                    <div class="benefict benefict_3">
+                        <div id="benefict_3"></div>
+                        <p>Mayor seguridad con accesos controlados y notificaciones en tiempo real.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right_side">
+            <div class="features">
+                <div class="features_text_content">
+                    <h2>Características</h2>
+                    <div class="feature feature_1">
+                        <div id="feature_1"></div>
+                        <p>Reservas en línea, encuentra y aparta tu parqueadero con anticipación.</p>
+                    </div>
+                    <div class="feature feature_2">
+                        <div id="feature_2"></div>
+                        <p>Mapa  interactivo del parqueadero con ubicación precisa en tiempo real. </p>
+                    </div>
+                    <div class="feature feature_3">
+                        <div id="feature_3"></div>
+                        <p>Pagos digitales seguros.</p>
+                    </div>
+                    <div class="feature feature_4">
+                        <div id="feature_4"></div>
+                        <p>Reportes detallados para propietarios de parqueaderos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact_us">
+                <div class="contact_us_items">
+                    <div class="contact_us_text_content">
+                        <div class="partner_img"></div>
+                        <p>¿Quieres Asociarte Con Nosotros?</p>
+                    </div>
+                    <button>Contactános</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer><p>© 2025 ParqueApp</p></footer>
 
-    <script>
-        function showAlert() {
-            alert("¡Gracias por tu interés en ParqueApp! Pronto nos pondremos en contacto contigo.");
-        }
-    </script>
 </body>
 </html>
