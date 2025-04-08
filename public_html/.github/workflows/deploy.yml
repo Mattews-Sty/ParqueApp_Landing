@@ -12,20 +12,35 @@ jobs:
     steps:
       - name: Checkout del código
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Agregar host SSH a known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Verificar usuario en el servidor
+      - name: Backup versión anterior (si existe)
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            mkdir -p /var/www/parqueapp/backups
+            if [ -d "/var/www/parqueapp/public_html" ]; then
+              TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+              mv "/var/www/parqueapp/public_html" "/var/www/parqueapp/backups/public_html_$TIMESTAMP"
+            fi
+            mkdir -p "/var/www/parqueapp/public_html"
+
+      - name: Copiar nuevos archivos
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          source: "public_html/*"
+          target: "/var/www/parqueapp/public_html"
