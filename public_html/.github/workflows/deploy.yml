@@ -1,48 +1,49 @@
-name: Deploy al Servidor Ubuntu 
+name: Deploy al Servidor Ubuntu
 
 on: 
   push: 
-    branches: ["main"]   # Se ejecuta en pushes a main 
+    branches: ["main"]   # Se ejecuta cuando hay push en main
 
 jobs: 
   deploy: 
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     steps: 
       # 1. Checkout del código del repositorio 
-      - name: Checkout code 
-        uses: actions/checkout@v3 
+      - name: Checkout del código
+        uses: actions/checkout@v3
 
-      # 2. Paso opcional: Agregar host SSH a known_hosts (para evitar confirmación de autenticidad) 
-      - name: Configure known_hosts
-        run: 
-            mkdir -p ~/.ssh 
-            ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts 
-        env: 
-          SSH_HOST: ${{ secrets.SSH_HOST }} 
+      # 2. Agregar host SSH a known_hosts (para evitar confirmación de autenticidad)
+      - name: Configurar known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      # 3. Backup de la versión previa (si existe) en el servidor 
-      - name: Backup versi\u00f3n anterior 
-        uses: appleboy/ssh-action@v1.1.0 
-        with: 
-          host: ${{ secrets.SSH_HOST }} 
-          username: ${{ secrets.SSH_USER }} 
-          key: ${{ secrets.SSH_PRIVATE_KEY }} 
-          port: ${{ secrets.SSH_PORT || 22 }} 
-          script: | 
-            if [ -d "/var/www/parqueapp" ]; then 
-              TIMESTAMP=$(date +"%Y%m%d-%H%M%S") 
-              mv "/var/www/parqueapp" "/var/www/parqueapp_$TIMESTAMP" 
-            fi 
-            mkdir -p "/var/www/html/mandanga" 
+      # 3. Backup de la versión anterior en el servidor y creación de nueva carpeta
+      - name: Backup versión anterior
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            mkdir -p /var/www/parqueapp/backups
+            if [ -d "/var/www/parqueapp/public_html" ]; then
+              TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+              mv "/var/www/parqueapp/public_html" "/var/www/parqueapp/backups/public_html_$TIMESTAMP"
+            fi
+            mkdir -p "/var/www/parqueapp/public_html"
 
-      # 4. Desplegar nuevos archivos via SCP 
-      - name: Copiar nuevos archivos via SCP 
-        uses: appleboy/scp-action@v0.1.7 
-        with: 
-          host: ${{ secrets.SSH_HOST }} 
-          username: ${{ secrets.SSH_USER }} 
-          key: ${{ secrets.SSH_PRIVATE_KEY }} 
-          port: ${{ secrets.SSH_PORT || 22 }} 
-          source: "public_html/*" 
-          target: "/var/www/parqueapp/ 
+      # 4. Desplegar nuevos archivos via SCP
+      - name: Copiar nuevos archivos via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          source: "public_html/*"
+          target: "/var/www/parqueapp/public_html/"
