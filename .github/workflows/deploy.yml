@@ -20,7 +20,7 @@ jobs:
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Backup versión anterior (Si existe)
+      - name: Backup versión anterior (exceptuando backups)
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -29,19 +29,24 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
             echo "Conexión SSH exitosa"
-            mkdir -p /var/www/parqueapp/backups
-            if [ -d "/var/www/parqueapp/public_html" ]; then
-              TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
-              mv "/var/www/parqueapp/public_html" "/var/www/parqueapp/backups/public_html_$TIMESTAMP"
-            fi
-            mkdir -p "/var/www/parqueapp/public_html"
+            cd /var/www/parqueapp
+            mkdir -p backups
+            mkdir -p back
 
-      - name: Copiar nuevos archivos
+            TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+
+            # Copiar todo menos backups a una carpeta de respaldo temporal
+            rsync -a --exclude 'backups' ./ back/parqueapp_$TIMESTAMP
+
+            # Eliminar contenido actual (excepto backups y back)
+            find . -mindepth 1 -maxdepth 1 ! -name 'backups' ! -name 'back' -exec rm -rf {} +
+
+      - name: Copiar nuevos archivos al servidor (directo en parqueapp)
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
-          source: "public_html/*"
-          target: "/var/www/parqueapp/public_html"
+          source: "*"
+          target: "/var/www/parqueapp"
