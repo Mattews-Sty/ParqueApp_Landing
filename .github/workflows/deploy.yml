@@ -20,7 +20,7 @@ jobs:
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Backup versión anterior (exceptuando backups)
+      - name: Backup versión anterior (en backups_parqueapp)
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -29,19 +29,23 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
             echo "Conexión SSH exitosa"
+            
+            # Directorio del proyecto
             cd /var/www/parqueapp
-            mkdir -p backups
+            
+            # Crear directorio de backups si no existe
+            mkdir -p /var/www/backups_parqueapp
 
             TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
 
-            # Copiar todo menos la carpeta backups al respaldo
-            rsync -a --exclude 'backups' ./ backups/parqueapp_$TIMESTAMP
+            # Crear respaldo en backups_parqueapp
+            rsync -a --exclude 'backups_parqueapp' ./ /var/www/backups_parqueapp/parqueapp_$TIMESTAMP
 
-            # Eliminar contenido actual (excepto backups)
-            find . -mindepth 1 -maxdepth 1 ! -name 'backups' -exec rm -rf {} +
+            # Eliminar contenido actual (excepto backups_parqueapp)
+            find . -mindepth 1 -maxdepth 1 ! -name 'backups_parqueapp' -exec rm -rf {} +
 
             # Mantener solo los 5 respaldos más recientes
-            cd backups
+            cd /var/www/backups_parqueapp
             ls -1t | tail -n +6 | xargs -r rm -rf
 
       - name: Copiar nuevos archivos al servidor (directo en parqueapp)
