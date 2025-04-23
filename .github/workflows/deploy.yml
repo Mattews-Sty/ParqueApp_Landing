@@ -31,15 +31,18 @@ jobs:
             echo "Conexión SSH exitosa"
             cd /var/www/parqueapp
             mkdir -p backups
-            mkdir -p back
 
             TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
 
-            # Copiar todo menos backups a una carpeta de respaldo temporal
-            rsync -a --exclude 'backups' ./ back/parqueapp_$TIMESTAMP
+            # Copiar todo menos la carpeta backups al respaldo
+            rsync -a --exclude 'backups' ./ backups/parqueapp_$TIMESTAMP
 
-            # Eliminar contenido actual (excepto backups y back)
-            find . -mindepth 1 -maxdepth 1 ! -name 'backups' ! -name 'back' -exec rm -rf {} +
+            # Eliminar contenido actual (excepto backups)
+            find . -mindepth 1 -maxdepth 1 ! -name 'backups' -exec rm -rf {} +
+
+            # Mantener solo los 5 respaldos más recientes
+            cd backups
+            ls -1t | tail -n +6 | xargs -r rm -rf
 
       - name: Copiar nuevos archivos al servidor (directo en parqueapp)
         uses: appleboy/scp-action@v0.1.7
