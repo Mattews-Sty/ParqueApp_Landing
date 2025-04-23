@@ -20,7 +20,7 @@ jobs:
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Backup versión anterior (en /var/backups/parqueapp)
+      - name: Backup versión anterior (en backups_parqueapp)
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -30,19 +30,19 @@ jobs:
           script: |
             echo "Conexión SSH exitosa"
             
-            # Crear directorio de backups si no existe
-            mkdir -p /var/backups/parqueapp || { echo "Error: No se pudo crear /var/backups/parqueapp"; exit 1; }
+            # Crear directorio backups_parqueapp si no existe
+            mkdir -p /var/backups_parqueapp || { echo "Error: No se pudo crear /var/backups_parqueapp"; exit 1; }
 
             TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
 
-            # Crear respaldo en /var/backups/parqueapp
-            rsync -a --exclude 'backups_parqueapp' /var/www/parqueapp/ /var/backups/parqueapp/parqueapp_$TIMESTAMP || { echo "Error: rsync falló"; exit 1; }
+            # Crear respaldo en backups_parqueapp
+            rsync -a --exclude 'backups_parqueapp' /var/www/parqueapp/ /var/backups_parqueapp/parqueapp_$TIMESTAMP || { echo "Error: rsync falló"; exit 1; }
 
             # Mantener solo los 5 respaldos más recientes
-            cd /var/backups/parqueapp
+            cd /var/backups_parqueapp
             ls -1t | tail -n +6 | xargs -r rm -rf || { echo "Error: No se pudo limpiar backups antiguos"; exit 1; }
             
-            echo "Backup creado exitosamente en /var/backups/parqueapp/parqueapp_$TIMESTAMP"
+            echo "Backup creado exitosamente en /var/backups_parqueapp/parqueapp_$TIMESTAMP"
 
       - name: Copiar nuevos archivos al servidor (directo en parqueapp)
         uses: appleboy/scp-action@v0.1.7
