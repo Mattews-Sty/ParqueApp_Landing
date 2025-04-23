@@ -87,6 +87,20 @@ footer {
     align-self: center;
 }
 
+#login:hover{
+    width: 160.83px;
+    height: 45.73px;
+    border-radius: 11.386px;
+    border: none;
+    background: var(--color_font);
+    color: var(--main-color);
+    text-align: center;
+    font-family: var(--font);
+    font-size: 21.349px;
+    font-weight: 600;
+    align-self: center;
+}
+
 #signUp{
     width: 156.56px;
     height: 46px;
@@ -94,6 +108,21 @@ footer {
     border: none;
     background: var(--color_font);
     color: var(--main-color);
+    text-align: center;
+    font-family: var(--font);
+    font-size: 21.349px;
+    font-weight: 600;
+    align-self: center;
+}
+
+#signUp:hover{
+    width: 156.56px;
+    height: 46px;
+    border-radius: 11.386px;
+    border: 1.423px solid var(--color_font);
+    background: var(--main-color);
+    color: var(--color_font);
+    color: var(--White, #FFF);
     text-align: center;
     font-family: var(--font);
     font-size: 21.349px;
